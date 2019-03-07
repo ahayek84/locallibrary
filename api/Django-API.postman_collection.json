@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "ebd64009-89ac-4631-a64d-85081d619674",
+		"name": "Django/API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://locallibrary/api/country",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://locallibrary/api/country",
+					"protocol": "http",
+					"host": [
+						"locallibrary"
+					],
+					"path": [
+						"api",
+						"country"
+					]
+				},
+				"description": "test\t"
+			},
+			"response": []
+		},
+		{
+			"name": "http://locallibrary/api/country/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://locallibrary/api/country/1",
+					"protocol": "http",
+					"host": [
+						"locallibrary"
+					],
+					"path": [
+						"api",
+						"country",
+						"1"
+					]
+				},
+				"description": "test\t"
+			},
+			"response": []
+		},
+		{
+			"name": "http://locallibrary/api/country/add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Palestine\",\n\t\"code\":\"PS\"\n}"
+				},
+				"url": {
+					"raw": "http://locallibrary/api/country/add/",
+					"protocol": "http",
+					"host": [
+						"locallibrary"
+					],
+					"path": [
+						"api",
+						"country",
+						"add",
+						""
+					]
+				},
+				"description": "test\t"
+			},
+			"response": []
+		},
+		{
+			"name": "http://locallibrary/api/country/update",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Palestine\",\n\t\"code\":\"PsT\"\n}"
+				},
+				"url": {
+					"raw": "http://locallibrary/api/country/update/1/",
+					"protocol": "http",
+					"host": [
+						"locallibrary"
+					],
+					"path": [
+						"api",
+						"country",
+						"update",
+						"1",
+						""
+					]
+				},
+				"description": "test\t"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete http://locallibrary/api/country/update",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Palestine\",\n\t\"code\":\"PsT\"\n}"
+				},
+				"url": {
+					"raw": "http://locallibrary/api/country/update/1/",
+					"protocol": "http",
+					"host": [
+						"locallibrary"
+					],
+					"path": [
+						"api",
+						"country",
+						"update",
+						"1",
+						""
+					]
+				},
+				"description": "test\t"
+			},
+			"response": []
+		}
+	]
+}

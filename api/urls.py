@@ -20,7 +20,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     url(r'^api/country/add/$', views.add_county),
-    #url(r'^api/country/get/(?P<id>[^/]*)/$', views.get_county),
+    url(r'^api/country/update/(?P<id>[^/]*)/$', views.update_county),
     path('api/country/<int:id>', views.get_county),
     path('api/country', views.all_countries)
 ]

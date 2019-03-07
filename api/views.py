@@ -39,3 +39,30 @@ def all_countries(request):
     country_obj = Country.objects.all()
     country_data = CountrySerializer(country_obj, many=True).data
     return Response({"data": country_data}, status=status.HTTP_200_OK)
+
+@api_view(['GET', 'POST','DELETE'])
+def update_county(request, id):
+    country_obj = Country.objects.get(id=id)
+    if request.method == "GET":
+        country_data = CountrySerializer(country_obj).data
+        return Response({"data": country_data}, status=status.HTTP_200_OK)
+    elif request.method == "DELETE":
+        country_obj.delete()
+        return Response({"data": "Country Deleted Successfully."}, status=status.HTTP_200_OK)
+    else:
+        country_serializer = CountrySerializer(country_obj, data=request.data)
+        if country_serializer.is_valid():
+            country_serializer.save()
+            return Response({"data": "Country Updated successfully"}, status=status.HTTP_200_OK)
+        else:
+            error_details = []
+            for key in country_serializer.errors.keys():
+                error_details.append({"field": key, "message": country_serializer.errors[key][0]})
+            data = {
+                    "Error": {
+                        "status": 400,
+                        "message": "Your submitted data was not valid - please correct the below errors",
+                        "error_details": error_details
+                        }
+                    }
+            return Response(data, status=status.HTTP_400_BAD_REQUEST)
