@@ -3,6 +3,7 @@ from .models import *
 
 class CountrySerializer(serializers.Serializer):
     name = serializers.CharField(max_length=250)
+    code = serializers.CharField(max_length=250)
 
     def create(self, validated_data):
         country_obj = Country(**validated_data)

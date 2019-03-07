@@ -24,3 +24,18 @@ def add_county(request):
                 }
 
         return Response(data, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def get_county(request,id):
+    country_obj = Country.objects.get(id=id)
+    ##country_obj = Country.objects.all()
+    country_data = CountrySerializer(country_obj).data
+    return Response({"data": country_data}, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def all_countries(request):
+    ##country_obj = Country.objects.get(id=id)
+    country_obj = Country.objects.all()
+    country_data = CountrySerializer(country_obj, many=True).data
+    return Response({"data": country_data}, status=status.HTTP_200_OK)
