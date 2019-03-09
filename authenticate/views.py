@@ -22,3 +22,11 @@ def login_user(request):
             return redirect('login')
     else:
         return render(request,'authenticate/login.html',{},)
+
+def logout_user(request):
+    if request.user.is_authenticated :
+        logout(request)
+        messages.success(request, ('logged out'))
+        return redirect('home')
+    else:
+        return redirect('home')
