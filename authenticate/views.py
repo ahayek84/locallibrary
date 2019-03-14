@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import SignUpForm, UpdateProfileForm,UpdateUserForm
+from .models import User
 
 # Create your views here.
 
@@ -35,8 +36,12 @@ def logout_user(request):
 def register_user(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
+        pform = UpdateProfileForm(request.POST)
         if form.is_valid():
-            form.save()
+            a = form.save()
+            b = pform.save(commit=False)
+            b.user_id = a.id
+            b.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             user = authenticate(request, username=username, password=password)
@@ -46,5 +51,26 @@ def register_user(request):
 
     else:
         form = SignUpForm()
-    context = {'form':form}
+        pform = UpdateProfileForm()
+
+    context = {'form':form,
+               'pform': pform}
     return render(request, 'authenticate/register.html', context)
+
+def update_profile(request):
+    if request.method == 'POST':
+        # update user info
+        form = UpdateUserForm(request.POST, instance=request.user)
+        pform = UpdateProfileForm(request.POST,instance=request.user.profile)
+        if form.is_valid() and pform.is_valid():
+            form.save()
+            pform.save()
+            messages.success(request,('you have successfuly updated your profile'))
+            return redirect('home')
+    else:
+        # show user info
+        form = UpdateUserForm(instance=request.user)
+        pform = UpdateProfileForm(instance=request.user.profile)
+    context = {'form':form,
+               'pform': pform}
+    return render(request, 'authenticate/update_profile.html', context)

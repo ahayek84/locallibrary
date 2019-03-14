@@ -1,15 +1,15 @@
 {% extends 'authenticate\base.html' %}
 {% block content %}
-    <h1 class="text-center">Register </h1>
+    <h1 class="text-center">Update profile </h1>
     <div class="col-md-6 offset-md-3">
-        <form method="post" action="{% url 'register' %}">
+        <form method="post" action="{% url 'update_profile' %}">
             {% csrf_token %}
             {% if form.errors %}
                 <p>Your form has errors</p>
             {% endif %}
             {{ form.as_p }}
             {{ pform.as_p }}
-            <button type="submit" class="btn btn-secondary">Register</button>
+            <button type="submit" class="btn btn-secondary">Update</button>
         </form>
     </div>
 {% endblock %}
